@@ -1,0 +1,30 @@
+[project]
+name = "lacrei-desafio"
+version = "0.1.0"
+description = "API RESTful para gerenciamento de profissionais da saúde e consultas médicas, desenvolvida como desafio técnico da Lacrei Saúde."
+authors = [
+    {name = "Melissa"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=6.1.1,<7.0.0)",
+    "djangorestframework (>=3.18.1,<4.0.0)",
+    "django-cors-headers (>=4.9.0,<5.0.0)",
+    "psycopg[binary] (>=3.3.6,<4.0.0)",
+    "python-dotenv (>=1.2.3,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.16.9,<0.17.0)"
+]
+
+[tool.ruff]
+exclude = [
+    "api/migrations",
+]
