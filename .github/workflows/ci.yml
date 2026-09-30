@@ -1,32 +1,60 @@
-services:
+name: CI
 
-  db:
-    image: postgres:16
-    container_name: lacrei-postgres-prod
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres_data_prod:/var/lib/postgresql/data
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-  web:
-    build: .
-    container_name: lacrei-api-prod
-    ports:
-      - "8000:8000"
-    environment:
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_HOST: db
-      DB_PORT: ${DB_PORT}
-      SECRET_KEY: ${SECRET_KEY}
-      DEBUG: ${DEBUG}
-      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
-      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
-    depends_on:
-      - db
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-volumes:
-  postgres_data_prod:
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: lacrei_db
+          POSTGRES_USER: lacrei_user
+          POSTGRES_PASSWORD: lacrei_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U lacrei_user -d lacrei_db"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Instalar Poetry
+        run: pip install poetry==2.5.1
+
+      - name: Instalar dependências
+        run: poetry install
+
+      - name: Executar Ruff
+        run: poetry run ruff check .
+
+      - name: Executar testes
+        env:
+          SECRET_KEY: chave-teste
+          DEBUG: 'False'
+          DB_NAME: lacrei_db
+          DB_USER: lacrei_user
+          DB_PASSWORD: lacrei_password
+          DB_HOST: localhost
+          DB_PORT: 5432
+        run: poetry run python manage.py test
+
+      - name: Construir imagem Docker
+        run: docker build -t lacrei-api .
