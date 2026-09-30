@@ -1152,23 +1152,47 @@ Após a implantação, serão documentados:
 
 
 
-\### Próximas etapas
+\## AWS
 
 
+
+A etapa de deploy em AWS ainda está em desenvolvimento.
+
+
+
+Atualmente, o projeto está preparado para execução em ambiente Docker e possui uma estrutura de produção com PostgreSQL, Gunicorn e variáveis de ambiente.
+
+
+
+Estou estudando e aprofundando os conhecimentos em serviços AWS para realizar posteriormente o deploy da aplicação em ambiente de staging/produção.
+
+
+
+\### Status
+
+
+
+\* \[x] Aplicação containerizada com Docker
+
+\* \[x] PostgreSQL configurado
+
+\* \[x] Ambiente de produção com Gunicorn
+
+\* \[x] CI com GitHub Actions
 
 \* \[ ] Deploy em staging na AWS
 
 \* \[ ] Deploy em produção na AWS
 
-\* \[ ] Configuração de HTTPS
+\* \[ ] Configuração de infraestrutura AWS
 
-\* \[ ] Configuração de HSTS
+\* \[ ] Estratégia de rollback em ambiente AWS
 
-\* \[ ] Configuração de cookies seguros
 
-\* \[ ] Estratégia definitiva de rollback
 
-\* \[ ] Documentação final do ambiente AWS
+A ausência do deploy em AWS neste momento é uma etapa de aprendizado e não impede a execução local da aplicação ou a execução da suíte de testes.
+
+
 
 
 
