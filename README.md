@@ -956,7 +956,7 @@ Foram adotadas algumas medidas de segurança no projeto:
 
 
 
-As configurações relacionadas a HTTPS, cookies seguros e HSTS serão habilitadas no ambiente AWS quando a aplicação estiver atrás de HTTPS.
+As configurações relacionadas a HTTPS, cookies seguros e HSTS serão habilitadas futuramente no ambiente AWS quando a aplicação estiver atrás de HTTPS.
 
 
 
@@ -1036,66 +1036,7 @@ Após o revert, a pipeline de CI/CD pode reconstruir e publicar a versão corrig
 
 
 
-A estratégia definitiva de rollback do ambiente AWS será documentada após a configuração do ambiente de staging e produção.
-
-
-
-\## Deploy AWS
-
-
-
-\### Staging
-
-
-
-\*\*Pendente de configuração.\*\*
-
-
-
-Após a implantação, serão documentados neste README:
-
-
-
-\* Serviço AWS utilizado
-
-\* URL do ambiente de staging
-
-\* Configuração do banco PostgreSQL
-
-\* Variáveis de ambiente
-
-\* HTTPS
-
-\* Processo de deploy
-
-
-
-\### Produção
-
-
-
-\*\*Pendente de configuração.\*\*
-
-
-
-Após a implantação, serão documentados:
-
-
-
-\* Serviço AWS utilizado
-
-\* URL de produção
-
-\* Configuração do banco PostgreSQL
-
-\* HTTPS
-
-\* Variáveis de ambiente
-
-\* Processo de deploy
-
-\* Estratégia de rollback
-
+A estratégia definitiva de rollback do ambiente AWS será documentada futuramente após a configuração do ambiente de staging e produção.
 
 
 \## Status do projeto
@@ -1196,11 +1137,6 @@ A ausência do deploy em AWS neste momento é uma etapa de aprendizado e não im
 
 
 
-\## Repositório
-
-
-
-Código-fonte:
 
 
 
